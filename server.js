@@ -5,6 +5,7 @@ const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Resend } = require('resend');
+const { Configuration, OpenAIApi } = require('openai');
 const passport = require('passport');
 const session = require('express-session');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -36,6 +37,11 @@ app.use(express.json());
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Initialize OpenAI
+const openai = new OpenAIApi(new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+}));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -135,6 +141,26 @@ passport.use(new GitHubStrategy({
     return done(err, null);
   }
 }));
+
+// Chat Completion Endpoint (NEW)
+app.post('/chat/completions', async (req, res) => {
+  const { messages } = req.body;
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: messages,
+      temperature: 0.7,
+      max_tokens: 1000,
+    });
+
+    const responseText = completion.data.choices[0].message.content;
+    res.json({ response: responseText });
+  } catch (error) {
+    console.error('Error generating chat completion:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to generate chat completion' });
+  }
+});
 
 app.get('/restaurants/nearby', async (req, res) => {
   const { dish, lat, lng } = req.query;
