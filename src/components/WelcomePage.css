@@ -1,0 +1,84 @@
+/* --- Page Background --- */
+.welcome-container {
+  background-image: url('welcome-background.png'); /* Your artistic food background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+}
+
+/* --- Glass Box --- */
+.glass-box {
+  background-color: rgba(32, 33, 35, 0.7); /* Dark semi-transparent */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3rem 2rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+/* --- Heading and Text --- */
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #ffffff; /* Light gray text */
+}
+
+.subtext {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ffffff; /* Light gray text */
+}
+
+/* --- Buttons --- */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.login-button,
+.signup-button {
+  background-color: #0FA474; /* Green tone */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #0d8e66; /* Darker green */
+}
+
+/* --- Optional: Responsive Tweak --- */
+@media (max-width: 600px) {
+  .glass-box {
+    padding: 2rem 1rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .subtext {
+    font-size: 0.9rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
