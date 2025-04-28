@@ -60,7 +60,7 @@ const SetNewPasswordPage = () => {
             <img src={errorIcon} alt="Error" className="message-icon" /> {error}
           </div>
         )}
-        <p><b>Almost there</b></p>
+        <p className='set-new-password'><b>Almost there</b></p>
         <p className="subtext">Type in your new password!</p>
         <input
           type="password"
