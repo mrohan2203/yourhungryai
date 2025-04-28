@@ -180,12 +180,15 @@
 }
 
 /* Forgot Password and Signup */
-.forgot-password-text,
+.forgot-password-text {
+  font-size: 0.9rem;
+}
+
 .signup-text {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-
 }
+
 .forgot-password-text span,
 .signup-text span {
   color: #0FA474;
