@@ -39,7 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
 // Connect to MongoDB
