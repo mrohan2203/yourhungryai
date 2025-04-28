@@ -36,6 +36,10 @@
   .glass-box p {
     color: #ffffff;
   }
+
+  .request-text {
+    font-size: 1.8rem;
+  }
   
   .subtext {
     font-size: 0.9rem;

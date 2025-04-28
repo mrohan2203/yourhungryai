@@ -49,7 +49,7 @@ const RequestOtpPage = () => {
             <img src={errorIcon} alt="Error" className="message-icon" /> {error}
           </div>
         )}
-        <p><b>Stressed? Not needed</b></p>
+        <p className='request-text'><b>Stressed? Not needed</b></p>
         <p className="subtext">Forgot your password? No worries! We’re here to help</p>
         <input
           type="email"
