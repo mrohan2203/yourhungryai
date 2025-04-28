@@ -49,7 +49,7 @@ const VerifyOtpPage = () => {
             <img src={errorIcon} alt="Error" className="message-icon" /> {error}
           </div>
         )}
-        <p><b>Just a few steps....</b></p>
+        <p className='verify-text'><b>Just a few steps....</b></p>
         <p className="subtext">Type the OTP received in your email</p>
         <input
           type="text"

@@ -109,6 +109,10 @@
     border: 1px solid #ff0000;
   }
   
+  .verify-text {
+    font-size: 1.8rem;
+  }
+  
   .message-icon {
     width: 16px;
     height: 16px;
