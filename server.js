@@ -38,10 +38,9 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Initialize OpenAI
-const openai = new OpenAIApi(new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-}));
+});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -142,23 +141,23 @@ passport.use(new GitHubStrategy({
   }
 }));
 
-// Chat Completion Endpoint (NEW)
+// New endpoint
 app.post('/chat/completions', async (req, res) => {
   const { messages } = req.body;
 
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages,
       temperature: 0.7,
       max_tokens: 1000,
     });
 
-    const responseText = completion.data.choices[0].message.content;
+    const responseText = completion.choices[0].message.content;
     res.json({ response: responseText });
   } catch (error) {
-    console.error('Error generating chat completion:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to generate chat completion' });
+    console.error('OpenAI error:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to generate response' });
   }
 });
 
