@@ -266,11 +266,14 @@ const ChatbotPage = () => {
         content: msg.text
       }));
   
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/chat/completions`, {
-        messages: [systemPrompt, ...contextMessages]
+      const textResponse = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [systemPrompt, ...contextMessages],
+        temperature: 0.7,
+        max_tokens: 1000
       });
-      
-      let recipeText = res.data?.response || "Sorry, I couldn't generate a response. Please try again with a culinary question.";
+  
+      let recipeText = textResponse.choices[0]?.message?.content || "Sorry, I couldn't generate a response. Please try again with a culinary question.";
   
       let imageData = null;
       let nearbyRestaurants = '';
